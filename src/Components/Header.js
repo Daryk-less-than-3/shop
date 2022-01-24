@@ -13,7 +13,7 @@ function Header(props) {
             <div className="d-flex align-center">
                 <img width={40} height={40} src="/img/logo.png" alt="logo" />
                 <div>
-                    <h3 className="text-uppercase">Во что поиграть?</h3>
+                    <h3 className="text-uppercase">Shop</h3>
                     <p className="opacity-5">Магазин странных кросовок</p>
                 </div>
             </div>
@@ -33,8 +33,9 @@ function Header(props) {
 
                 </li>
                 <li>
-                    <img src="/img/user.svg" alt="user"></img>
-
+                    <Link to={"/orders"} >
+                        <img src="/img/user.svg" alt="user"></img>
+                    </Link>
                 </li>
             </ul>
         </header>

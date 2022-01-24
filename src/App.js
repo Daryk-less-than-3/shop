@@ -6,6 +6,7 @@ import Header from "./Components/Header";
 import Drawer from "./Components/Drawer";
 import Favorites from "./pages/Favorites";
 import AppContext from "./context";
+import Orders from "./pages/Orders";
 
 
 
@@ -82,7 +83,7 @@ function App() {
     
   };
   return (
-    <AppContext.Provider value={{cartItems,favorites,items, isItemAddedToCart, onAddToFavorite, setCartOpened, setCartItems}}>
+    <AppContext.Provider value={{cartItems,favorites,items, isItemAddedToCart, onAddToFavorite, setCartOpened, setCartItems, onAddToCart}}>
       <div className="wrapper clear">
 
         {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem} />}
@@ -102,8 +103,13 @@ function App() {
 
         <Route path={"/favorites"} exact>
           <Favorites
-            onAddToFavorite={onAddToFavorite}
-            onAddToCart={onAddToCart}
+            // onAddToFavorite={onAddToFavorite}
+            // onAddToCart={onAddToCart}
+          />
+        </Route>
+        <Route path={"/orders"} exact>
+          <Orders
+           
           />
         </Route>
 
