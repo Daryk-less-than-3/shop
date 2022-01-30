@@ -1,16 +1,22 @@
 import Card from "../Components/Card";
-import React, { useContext } from "react";
-import AppContext from "../context";
+import React from "react";
 import axios from "axios";
 
 function Orders() {
     const [orders, setOrders] = React.useState([]);
-    const {onAddToCart, isLoading, onAddToFavorite} = useContext(AppContext);
+    // const {onAddToCart,  onAddToFavorite} = useContext(AppContext);
+    const [isLoading, setIsLoading] = React.useState(true);
     React.useEffect(() => {
         (async () => {
-            const { data } = await axios.get("https://61e99a907bc0550017bc63ca.mockapi.io/orders");
-            setOrders(data.map((obj) => obj.items).flat());
-            // console.log(data.reduce((prev, obj) => [...prev, ...obj.items],[]))
+            try{
+                const { data } = await axios.get("https://61e99a907bc0550017bc63ca.mockapi.io/orders");
+                // setOrders(data.map((obj) => obj.items).flat());
+                setOrders(data.reduce((prev, obj) => [...prev, ...obj.items],[]));
+                setIsLoading(false);
+            }catch(error){
+                // alert("Ошибка при запросе заказа");
+                console.log(error)
+            }
         })();
     }, [])
 
@@ -29,10 +35,7 @@ function Orders() {
                     (
                         <Card
                             key={i}
-                            onFavorite={(obj) => onAddToFavorite(obj)}
-                            onClickPlus={(obj) => onAddToCart(obj)}
-                            loading={isLoading}
-
+                            loading={isLoading}  
                             {...item}
                         />
                     ))
