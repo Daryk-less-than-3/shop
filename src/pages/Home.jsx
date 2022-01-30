@@ -13,16 +13,17 @@ function Home({
     }){
 
     function renderItems(){
+      
       const filteredItems = items.filter((item) => 
         item.title.toLowerCase().includes(searchValue.toLowerCase()),
       );
+      console.log(filteredItems)
       return (isLoading ? [1,2,3] : filteredItems).map((item, i) => (
         <Card 
           key={i}
           onFavorite = {(obj) => onAddToFavorite(obj)}
           onClickPlus = {(obj) => onAddToCart(obj)}
           loading={isLoading}
-          
           {...item}
           />
           ))

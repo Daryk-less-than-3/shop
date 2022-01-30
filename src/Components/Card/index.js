@@ -50,7 +50,7 @@ function Card({ id,  onFavorite, title, imageUrl, price, onClickPlus, favorited 
                             <b>{price} руб</b>
                         </div>
 
-                        {onClickPlus && <img 
+                        { <img 
                             className={styles.plus} 
                             onClick={handleClickPlus} 
                             src={isItemAddedToCart(id) ? "/img/btn-checked.svg" : "/img/plus.svg"} 
